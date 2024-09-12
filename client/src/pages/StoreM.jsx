@@ -4,15 +4,12 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 export default function StoreM() {
-
-
-  
   const [Info, setInfo] = useState([]);
- 
+
   const [DId, setformId] = useState("");
   const [filter, setfilter] = useState([]);
   const [query, setQuery] = useState(" ");
-  console.log("ind",DId);
+  console.log("ind", DId);
 
   console.log();
 
@@ -41,7 +38,7 @@ export default function StoreM() {
       const data = await res.json();
       if (res.ok) {
         setInfo((prev) => prev.filter((Employe) => Employe._id !== DId));
-        alert("deleted")
+        alert("deleted");
       } else {
         console.log(data.message);
       }
@@ -74,62 +71,61 @@ export default function StoreM() {
 
     // Define the columns for the table
     const columns = [
-        { title: "Name", dataKey: "name" },
-        { title: "Flavor", dataKey: "flavor" },
-        { title: "Quantity", dataKey: "quantity" },
-        { title: "Price", dataKey: "price" }
+      { title: "Name", dataKey: "name" },
+      { title: "Flavor", dataKey: "flavor" },
+      { title: "Quantity", dataKey: "quantity" },
+      { title: "Price", dataKey: "price" },
     ];
 
     // Define the data for the table
     const data = Info.map((emp) => ({
-        name: emp.ItemsN,
-        flavor: emp.flavor,
-        quantity: emp.quantity,
-        price: emp.price
+      name: emp.ItemsN,
+      flavor: emp.flavor,
+      quantity: emp.quantity,
+      price: emp.price,
     }));
 
     // Add table to the PDF
     doc.autoTable({
-        columns: columns,
-        body: data,
-        styles: {
-            cellPadding: 1,
-            fontSize: 10,
-            lineHeight: 1.2,
-            overflow: "linebreak"
-        },
-        headStyles: {
-            fillColor: [0, 128, 0],
-            textColor: [255, 255, 255],
-            fontStyle: 'bold'
-        },
-        columnStyles: {
-            0: { halign: 'left' },
-            1: { halign: 'left' },
-            2: { halign: 'left' },
-            3: { halign: 'left' }
-        }
+      columns: columns,
+      body: data,
+      styles: {
+        cellPadding: 1,
+        fontSize: 10,
+        lineHeight: 1.2,
+        overflow: "linebreak",
+      },
+      headStyles: {
+        fillColor: [0, 128, 0],
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+      },
+      columnStyles: {
+        0: { halign: "left" },
+        1: { halign: "left" },
+        2: { halign: "left" },
+        3: { halign: "left" },
+      },
     });
 
     // Save the PDF
     doc.save("productReport.pdf");
-};
-
-
-
-  
-
+  };
 
   return (
     <div className="h-[600px] relative">
-      <img src="" alt="" className="w-full h-full object-cover" />
+      <img
+        src="https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        className="w-full h-full object-cover"
+      />
 
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
         <div>
           <div className=" flex justify-center items-center">
             <div>
               <h1 className="text-4xl font-serif opacity-90 uppercase   text-gray-800">
-                 Management product 
+                Management product
               </h1>
             </div>
           </div>
@@ -148,46 +144,45 @@ export default function StoreM() {
             </div>
           </div>
           <div className=" mb-1 mt-4  ">
-          <Link to={`/add`}>
-            <button className="w-36 bg-blue-600 uppercase rounded-lg  h-10 bg-opacity-90 border-white border border-opacity-45 text font-serif text-white text-opacity-90">
-              new product
-            </button>
+            <Link to={`/add`}>
+              <button className="w-36 bg-blue-600 shadow-md hover:text-black uppercase rounded-lg  h-10 bg-opacity-90 border-white border border-opacity-45 text font-serif text-white text-opacity-90">
+                new product
+              </button>
             </Link>
             <button
               onClick={() => generatePDF()}
-              className="w-24 bg-blue-600 rounded-lg  h-10 bg-opacity-90 border-white border border-opacity-45 text font-serif text-white text-opacity-90 ml-2"
+              className="w-24 bg-blue-600 uppercase shadow-md rounded-lg hover:text-black  h-10 bg-opacity-90 border-white border border-opacity-45 text font-serif text-white text-opacity-90 ml-2"
             >
               Report
             </button>
           </div>
         </div>
-       
+
         <div className=" lg:w-[900px] xl:w-[1300px] lg:h-[400px] w-[450px]  md:w-[700px] rounded-lg bg-opacity-30  bg-white">
-   
           <div className="">
-            <div className="max-h-96 overflow-y-auto">
+            <div className="max-h-96 overflow-y-auto scrollbar-none">
               <table className="w-full border border-white border-opacity-50 divide-y divide-white divide-opacity-40 shadow-md">
                 <thead className="bg-none divide-x divide-black">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs bg-blue-700 bg-opacity-70 text-white font-medium text-opacity-80   uppercase">
+                    <th className="px-6 py-3 text-left text-xs bg-slate-300 bg-opacity-80 text-white font-medium text-opacity-80   uppercase">
                       image
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium   bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
+                    <th className="px-6 py-3 text-left text-xs font-medium   bg-slate-300 bg-opacity-70 text-black text-opacity-80   uppercase">
                       Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
-                    flavor
+                    <th className="px-6 py-3 text-left text-xs font-medium bg-slate-300 bg-opacity-70 text-black text-opacity-80   uppercase">
+                      flavor
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium  bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
-                       quantity
+                    <th className="px-6 py-3 text-left text-xs font-medium  bg-slate-300 bg-opacity-70 text-black text-opacity-80   uppercase">
+                      quantity
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium  bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
+                    <th className="px-6 py-3 text-left text-xs font-medium  bg-slate-300 bg-opacity-70 text-black text-opacity-80   uppercase">
                       price
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium  bg-blue-700 bg-opacity-70 text-white text-opacity-80    uppercase">
+                    <th className="px-6 py-3 text-left text-xs font-medium  bg-slate-300 bg-opacity-70 text-black text-opacity-80    uppercase">
                       Edit
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
+                    <th className="px-6 py-3 text-left text-xs font-medium bg-slate-300 bg-opacity-70 text-black text-opacity-80   uppercase">
                       Delete
                     </th>
                   </tr>
@@ -202,32 +197,32 @@ export default function StoreM() {
                           className=" dark:border-gray-700 dark:bg-gray-800"
                         >
                           <td className="px-6 py-4 break-words max-w-[300px]">
-                            <img src={Employe.image} alt="" className="w-14 h-14" />
+                            <img
+                              src={Employe.image}
+                              alt=""
+                              className="w-14 h-14"
+                            />
                           </td>
 
-                          <td className="px-6 py-4 whitespace-nowrap">
+                          <td className="px-6 py-4 font-serif whitespace-nowrap">
                             {Employe.ItemsN}
                           </td>
 
-                          <td className="px-6 py-4 break-words max-w-[300px] ">
+                          <td className="px-6 py-4 font-serif break-words max-w-[300px] ">
                             {Employe.flavor}
                           </td>
 
-                          <td className="px-6 py-4  break-words max-w-[300px]">
-                          {Employe.quantity}
+                          <td className="px-6 py-4 font-mono  break-words max-w-[300px]">
+                            {Employe.quantity}
                           </td>
-                          
-                          <td className=" px-8 py-4  whitespace-nowrap">
-                           
-                              
-                              RS.{Employe.price}
-                            
-                           
+
+                          <td className=" px-8 py-4 font-mono  whitespace-nowrap">
+                            RS.{Employe.price}
                           </td>
 
                           <td className="  whitespace-nowrap">
                             <Link to={`/update/${Employe._id}`}>
-                              <button className="w-24 bg-lime-500 hover:opacity-80 bg-opacity-70 rounded-lg  h-10  border-white border border-opacity-45 text font-serif text-white text-opacity-80">
+                              <button className="w-24 bg-[#1bbe4c] hover:opacity-80 bg-opacity-70 rounded-lg  h-10  border-white border border-opacity-45 text font-serif text-white text-opacity-80">
                                 Edit
                               </button>
                             </Link>
@@ -239,7 +234,7 @@ export default function StoreM() {
                                 handleDeleteUser();
                               }}
                             >
-                              <button className="w-24 bg-red-600 hover:opacity-80 rounded-lg bg-opacity-70   h-10  border-white border border-opacity-45 text font-serif text-white text-opacity-80 ">
+                              <button className="w-24 bg-[#d62e22] hover:opacity-80 rounded-lg bg-opacity-70   h-10  border-white border border-opacity-45 text font-serif text-white text-opacity-80 ">
                                 Delete
                               </button>
                             </span>
@@ -250,7 +245,7 @@ export default function StoreM() {
                   ) : (
                     <>
                       <p className="text-2xl font-serif absolute ml-[480px] opacity-60 mt-14 ">
-                        You have no product 
+                        You have no product
                       </p>
                     </>
                   )}
@@ -258,17 +253,8 @@ export default function StoreM() {
               </table>
             </div>
           </div>
-        
         </div>
-       
-       
-
       </div>
-
-      
-
-
-
     </div>
   );
 }

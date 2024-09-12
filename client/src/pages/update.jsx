@@ -8,7 +8,7 @@ import {
   import { useEffect, useState } from "react";
   import { CircularProgressbar } from "react-circular-progressbar";
   import "react-circular-progressbar/dist/styles.css";
-  import { useNavigate, useParams } from "react-router-dom";
+  import { Link, useNavigate, useParams } from "react-router-dom";
   
   export default function CreatePost() {
     const [file, setFile] = useState(null);
@@ -113,13 +113,28 @@ import {
    
   
     return (
-      <div className="p-3 max-w-3xl mx-auto min-h-screen">
-        <div></div>
-        <div className="my-7 flex items-center justify-center ml-14 ">
-          <h1 className=" text-3xl font-serif text-slate-700">Add Product</h1>
+      <div className="min-h-screen relative flex items-center justify-center">
+
+              
+<img
+        src="https://images.pexels.com/photos/866351/pexels-photo-866351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+  <div className="relative bg-white mt-14 mb-28 bg-opacity-60 shadow-sm shadow-black w-[900px] max-w-[900px] p-6 md:p-8 rounded-3xl border border-opacity-50 flex flex-col items-center">
+         <div className="flex justify-center items-center">
+              <Link to={`/store`}>
+                <button className="text-md hover:text-blue-600 font-serif underline text-gray-800">
+                  Back
+                </button>
+              </Link>
+            </div>
+        <div className="my-7 flex items-center justify-center  ">
+          <h1 className=" text-3xl font-serif uppercase text-slate-700">Add Product</h1>
         </div>
+       
   
-        <div className="w-[800px] h-[500px] border shadow-xl rounded-3xl ">
+        <div className="w-[800px] h-[550px] border shadow-xl rounded-3xl ">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="flex gap-4 items-center justify-between border-2 rounded-2xl shadow-xl    p-3">
               <input
@@ -148,7 +163,7 @@ import {
               </button>
             </div>
             {imageUploadError && (
-              <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
+              <p className="mt-5 text-red-600  bg-red-300 w-300 h-7 rounded-lg text-center ">
                 {imageUploadError}
               </p>
             )}
@@ -173,7 +188,10 @@ import {
                 value={formData.ItemsN}
               />
             </div>
-            <div className="flex justify-center items-center gap-56">
+            <div className="flex justify-center items-center gap-56"> 
+              <div>
+
+             
               <input
                 className=" flex-1 bg-slate-100 shadow-sm shadow-slate-500 p-3 rounded-lg w-[460px] h-11"
                 type="text"
@@ -185,6 +203,13 @@ import {
                   }
                   value={formData.price}
               />
+              <p className="mt-0 text-red-600 h-0  uppercase shadow-sm    rounded-lg text-center ">
+                          Price must be a number
+                        </p>
+                        </div>
+                        <div>
+
+                       
   
               <select
                 className="rounded-lg shadow-sm shadow-slate-500"
@@ -195,12 +220,12 @@ import {
               >
                 <option value="">quantity</option>
                 <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                
               </select>
+              </div>
             </div>
   
-            <div className="flex justify-center items-center gap-10">
+            <div className="flex justify-center items-center mt-4 gap-10">
               <input
                 className=" flex-1 bg-slate-100 shadow-sm shadow-slate-500 p-3 rounded-lg w-[460px] h-11"
                 type="text"
@@ -254,6 +279,7 @@ import {
               </p>
             )}
           </form>
+        </div>
         </div>
       </div>
     );

@@ -107,10 +107,14 @@ export default function main() {
   
 
   return (
-    <div>
-      <div className="flex justify-center items-center mt-2 mb-8">
-       
-      </div>
+    <div className="min-h-screen relative flex items-center justify-center">
+
+<img
+        src="https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+<div className="relative bg-white mt-14 mb-28 bg-opacity-10 shadow-sm shadow-black w-[1400px] max-w-[1400px] p-6 md:p-8 rounded-3xl border border-opacity-50 flex flex-col items-center">  
       <div className="flex justify-center items-center mt">
         <div>
           <form>
@@ -126,26 +130,29 @@ export default function main() {
         </div>
       </div>
       <div className="flex justify-center items-center">
-        <div className="max-h-96 overflow-y-auto scrollbar-none mt-4">
+        <div className="max-h-[600px] overflow-y-auto scrollbar-none mt-4">
           <div className="flex flex-wrap justify-center w-[1300px]">
             {filter && filter.length > 0 ? (
               <>
                 {filter.map((items) => (
                   <tr
                     key={items._id}
-                    className=" dark:border-gray-700 dark:bg-gray-800"
+                    className=" dark:border-gray-700   dark:bg-gray-800"
                   >
                     <div
                       key={items._id}
-                      className=" w-[300px] h-[250px]  mt-10 mb-20 rounded   "
+                      className=" w-[260px] h-[250px]  mt-10   mb-20 rounded   "
                     >
-                      <div className="flex justify-center items-center gap-8 mt-4">
+                      <div className="w-[220px] h-[330px] bg-white rounded-xl shadow-lg">
+
+                     
+                      <div className="flex justify-center  items-center gap-8 ">
                       <Link to={`/details/${items._id}`}>
                         <div>
                           <img
                             src={items.image}
                             alt=""
-                            className="w-48 h-48 object-cover"
+                            className="w-48 h-48 mt-4 object-cover"
                           />
                         </div>
 
@@ -153,6 +160,19 @@ export default function main() {
 
                         
                       </div>
+
+                      <div className=" ml-4 mt-2">
+                        <div className="font-serif w-20 truncate">
+                        {items.ItemsN}
+                        </div>
+                        <div className="font-mono text-red-600">
+                        Rs.{items.price}
+                        </div>
+                        <div className="font-normal text-sm text-slate-600 w-32 truncate">
+                        {items.descrip}
+                        </div>
+                      </div>
+
                       <Link to={`/details/${items._id}`}>
                       <div className="flex  mt-4 justify-center items-center">
                         <div >
@@ -164,6 +184,7 @@ export default function main() {
                        
                       </div>
                       </Link>
+                      </div>
                     </div>
                   </tr>
                 ))}
@@ -186,13 +207,14 @@ export default function main() {
       <div className="flex justify-center items-center mb-8 mt-16">
         <div>
           <Link to={`/cart`}>
-            <button className="w-24 h-8  text-opacity-80 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg">
+            <button className="w-24 h-8  text-opacity-80 rounded-full text-white bg-opacity-90 uppercase bg-red-600 hover:opacity-80 shadow-lg">
               {" "}
-              view bill
+              cart
             </button>
           </Link>
         </div>
       </div>
+      </div>    
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { app } from "../firebase";
 import { useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -16,6 +16,7 @@ export default function CreatePost() {
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+  const [Cvalidation, setCValidation] = useState(null);
 
   console.log(formData);
 
@@ -84,24 +85,46 @@ export default function CreatePost() {
     }
   };
 
-  const handlePriceChange = (e) => {
-    const price = parseFloat(e.target.value);
-    if (price < 0) {
-      setPublishError("Price cannot be negative");
+  const handlepriceChange = (e) => {
+    const price = e.target.value.trim();
+    const pricePattern = /^[1-9]\d*$/; // Pattern for positive integers
+
+    if (price === "") {
+      setCValidation(null);
+    } else if (!pricePattern.test(price)) {
+      if (isNaN(price)) {
+        setCValidation("price must be a number");
+      } else {
+        setCValidation("price must be a positive integer");
+      }
     } else {
       setFormData({ ...formData, price });
-      setPublishError(null); // Clear error message if price is valid
+      setCValidation(null);
     }
   };
 
   return (
-    <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <div></div>
-      <div className="my-7 flex items-center justify-center ml-14 ">
-        <h1 className=" text-3xl font-serif text-slate-700">Add Product</h1>
+    <div className="min-h-screen relative flex items-center justify-center">
+         
+         <img
+        src="https://images.pexels.com/photos/866351/pexels-photo-866351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+<div className="relative bg-white mt-14 mb-28 bg-opacity-60 shadow-sm shadow-black w-[900px] max-w-[900px] p-6 md:p-8 rounded-3xl border border-opacity-50 flex flex-col items-center">
+     <div className="flex justify-center items-center">
+              <Link to={`/store`}>
+                <button className="text-md hover:text-blue-400   font-serif underline text-gray-800">
+                  Back
+                </button>
+              </Link>
+            </div>
+      <div className="my-7 flex items-center justify-center  ">
+        <h1 className=" text-3xl font-serif uppercase text-slate-700">Add Product</h1>
       </div>
 
-      <div className="w-[800px] h-[500px] border shadow-xl rounded-3xl ">
+      <div className="w-[800px] h-[510px] bg-white bg-opacity-50 border shadow-xl rounded-3xl ">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div className="flex gap-4 items-center justify-between border-2 rounded-2xl shadow-xl    p-3">
             <input
@@ -112,7 +135,7 @@ export default function CreatePost() {
             />
             <button
               type="button"
-              className=" w-40 h-10 rounded-lg bg-blue-500 text-white hover:opacity-90"
+              className=" w-40 h-10 rounded-lg bg-blue-500 uppercase shadow-lg text-white hover:opacity-90"
               size="sm"
               onClick={handleUpdloadImage}
               disabled={imageUploadProgress}
@@ -155,14 +178,28 @@ export default function CreatePost() {
             />
           </div>
           <div className="flex justify-center items-center gap-56">
+            <div>
+
+           
             <input
               className=" flex-1 bg-slate-100 shadow-sm shadow-slate-500 p-3 rounded-lg w-[460px] h-11"
               type="text"
               placeholder="price"
               required
               id="price"
-              onChange={handlePriceChange}
+              onChange={handlepriceChange}
             />
+             {Cvalidation && (
+                        <p className="mt-0 text-red-600 h-0     rounded-lg text-center ">
+                          {Cvalidation}
+                        </p>
+             )}
+              </div>
+            
+
+            <div>
+
+           
 
             <select
               className="rounded-lg shadow-sm shadow-slate-500"
@@ -172,12 +209,12 @@ export default function CreatePost() {
             >
               <option value="">quantity</option>
               <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+              
             </select>
+            </div>
           </div>
 
-          <div className="flex justify-center items-center gap-10">
+          <div className="flex justify-center items-center mt-4 gap-10">
             <input
               className=" flex-1 bg-slate-100 shadow-sm shadow-slate-500 p-3 rounded-lg w-[460px] h-11"
               type="text"
@@ -217,17 +254,18 @@ export default function CreatePost() {
 
           <button
             type="submit"
-            className=" bg-blue-700 text-white p-3 rounded-lg w-[460px] h-11 hover:opacity-90 lg:w-full"
+            className=" bg-blue-700 uppercase text-white p-3 rounded-lg w-[460px] h-11 hover:opacity-90 lg:w-full"
           >
-            Add
+            submit
           </button>
 
           {publishError && (
-            <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
+            <p className="mt-5 text-red-600 bg-white  w-300 h-7 rounded-lg text-center ">
               {publishError}
             </p>
           )}
         </form>
+      </div>
       </div>
     </div>
   );
