@@ -12,7 +12,6 @@ export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [FormId, setdetformId] = useState(0);
   console.log(totalPrice);
-  const [reportDownloaded, setReportDownloaded] = useState(false);
   const navigate = useNavigate();
 
   // after click the add to cart save database after display in the dropdown menu

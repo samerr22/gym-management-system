@@ -104,7 +104,7 @@ import {
           if (res.ok) {
             setPublishError(null);
             alert("done")
-            navigate(``);
+            navigate(`/store`);
           }
         } catch (error) {
           setPublishError("Something went wrong");

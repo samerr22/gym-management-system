@@ -78,7 +78,7 @@ export default function CreatePost() {
       if (res.ok) {
         setPublishError(null);
         alert("successfull");
-        navigate("");
+        navigate("/store");
       }
     } catch (error) {
       setPublishError("Something went wrong");
