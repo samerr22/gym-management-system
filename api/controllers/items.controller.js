@@ -1,5 +1,4 @@
 import Cart from "../models/cart.mode.js";
-import CheckD from "../models/checkout.model.js";
 import Items from "../models/items.model.js";
 
 //add new items
