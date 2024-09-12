@@ -164,52 +164,5 @@ export const deleteItemss = async (req, res, next) => {
   };
 
 
-  //after click the check out those data save the chekd database
-export const CheckOutcrete = async (req, res, next) => {
-    const {
-      
-      length,
-      totalPrice,
-      CurrentuserId,
-      items,
-    } = req.body;
-  
-  
-    const newItems = new CheckD({
-      
-      length,
-      totalPrice,
-      CurrentuserId,
-      items,
-    });
-    try {
-      const savedItems = await newItems.save();
-      res.status(201).json(savedItems);
-    } catch (error) {
-      next(error);
-      console.log(error);
-    }
-  };
-
-
-
-
-  // display in the cart
-export const getcheckdetails = async (req, res, next) => {
-  try {
-    const { CurrentuserId } = req.params;
-    console.log(CurrentuserId);
-
-    // Query the database for documents matching CurrentuserId
-    const items = await CheckD.find({ CurrentuserId });
-    console.log(items);
-
-    // Send extracted data as response
-    res.json(items);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
-  }
-};
 
 
