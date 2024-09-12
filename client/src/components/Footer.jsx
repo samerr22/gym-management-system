@@ -1,6 +1,3 @@
-import facebook from "../img/facebook.png";
-import gmail from "../img/gmail.png";
-import google from "../img/google-maps.png";
 
 
 export default function Footer() {
@@ -34,11 +31,11 @@ export default function Footer() {
           <div className="text-white">
             <h1 className="text-lg font-serif mb-2">Contact Us:</h1>
             <div className="flex items-center gap-2 mb-2">
-              <img src={google} className="w-6 rounded-lg" alt="Google" />
+              <img src="" className="w-6 rounded-lg" alt="Google" />
               <h1>new one</h1>
             </div>
             <div className="flex items-center gap-2">
-              <img src={gmail} className="w-6 rounded-lg" alt="Gmail" />
+              <img src="" className="w-6 rounded-lg" alt="Gmail" />
               <h1>new one</h1>
             </div>
           </div>
