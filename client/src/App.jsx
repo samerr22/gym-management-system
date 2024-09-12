@@ -9,6 +9,7 @@ import Bill from "./pages/Bill";
 import Cart from "./pages/Cart";
 import Inventrylogin from "./pages/Inventrylogin";
 import StoreM from "./pages/StoreM";
+import Addnewproduct from "./pages/Addnewproduct";
 
 
 
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/cart" element={<Cart />} /> 
           <Route path="/home" element={<Home />} />
           <Route path="/store" element={<StoreM />} />
+          <Route path="/add" element={<Addnewproduct />} />
          
          
         </Route>
