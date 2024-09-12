@@ -1,7 +1,188 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { FaPlus, FaMinus } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+
 
 export default function details() {
+
+    const [formData, setFormData] = useState({});
+    const [quantityMap, setQuantityMap] = useState(new Map());
+    const { currentUser } = useSelector((state) => state.user);
+    console.log(formData)
+  
+
+    const { itemId } = useParams();
+
+
+    useEffect(() => {
+        try {
+          const fetchStudents = async () => {
+            const res = await fetch(`/api/items/IgetAll?itemId=${itemId}`);
+            const data = await res.json();
+            console.log("data", data);
+    
+            if (!res.ok) {
+              console.log(data.message);
+            }
+            if (res.ok) {
+              const selected = data.items.find((item) => item._id === itemId);
+              if (selected) {
+                setFormData(selected);
+              }
+            }
+          };
+          fetchStudents();
+        } catch (error) {
+          console.log(error.message);
+        }
+      }, [itemId]);
+
+      const increment = (itemId) => {
+        setQuantityMap((prevMap) => {
+          const newMap = new Map(prevMap);
+          const currentQuantity = newMap.get(itemId) || 1;
+          if (currentQuantity < 3) {
+            newMap.set(itemId, currentQuantity + 1);
+          }
+          return newMap;
+        });
+      };
+    
+      const decrement = (itemId) => {
+        setQuantityMap((prevMap) => {
+          const newMap = new Map(prevMap);
+          const currentQuantity = newMap.get(itemId) || 1;
+          if (currentQuantity > 1) {
+            newMap.set(itemId, currentQuantity - 1);
+          }
+          return newMap;
+        });
+      };
+
+
+      //after go to home page inside items add to cart
+  const handleAddToCart = async (itemId) => {
+    try {
+      
+
+      
+
+      const quantity = quantityMap.get(itemId) || 1;
+
+      const response = await fetch("/api/items/Ccreate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          CurrentuserId: currentUser._id,
+          ItemsN: formData.ItemsN,
+          quantity: quantity,
+          price: formData.price,
+          image: formData.image,
+        }),
+      });
+
+      if (response.ok) {
+        alert("succesfull");
+      } else {
+        alert("Out of stock");
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    }
+  };
+
+
+
   return (
-    <div>details</div>
+    <div className='mt-20 mb-36'>
+        <div className=' ml-[1100px]'>
+            <button className='w-20 bg-blue-600 rounded-full'>
+            Cart
+            </button>
+           
+        </div>
+        <div className='flex justify-center items-center gap-20'>
+            <div>
+
+        
+           <img src={formData.image} alt="" className='w-72 h-96' />
+
+
+
+          
+            </div>
+
+
+            <div>
+                <div>
+                    <div className='font-serif text-xl'>
+                        <h1>{formData.ItemsN}</h1>
+                    </div>
+                    <div>
+                        <p>Rs{formData.price}</p>
+                    </div>
+                    <div className='mt-4 w-96 break-words'>
+                        <h1>{formData.descrip}</h1>
+                    </div>
+
+                    <div className='mt-4'>
+                        <h1>{formData.size}</h1>
+                    </div>
+                    <div className='mt-4'>
+                        <h1>{formData.flavor}</h1>
+                    </div>
+
+                    <div className='mt-4'>
+                    <div className="">
+                            <div className="flex mt-10">
+                              <div
+                                className="w-[30px] border border-white bg-white rounded-md flex justify-center items-center  cursor-pointer "
+                                onClick={() => decrement(formData._id)}
+                              >
+                                <FaMinus className="text-gray-800" />
+                              </div>
+                              <div className="text-[20px] w-[30px]  text-black flex justify-center items-center  ">
+                                {quantityMap.get(formData._id) || formData.quantity}
+                              </div>
+
+                              <div
+                                className="w-[30px]  border border-white bg-white rounded-md   flex justify-center items-center cursor-pointer "
+                                onClick={() => increment(formData._id)}
+                              >
+                                <FaPlus className="text-gray-800" />
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div className="flex justify-center items-center mt-8">
+                            <div>
+                              <button
+                                onClick={() => handleAddToCart(formData._id)}
+                                className="w-24 h-8 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg"
+                              >
+                                Add
+                              </button>
+                            </div>
+                          </div>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+        
+
+
+    </div>
   )
 }
