@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 
@@ -102,9 +102,11 @@ export default function details() {
   return (
     <div className='mt-20 mb-36'>
         <div className=' ml-[1100px]'>
+        <Link to={`/cart`}>
             <button className='w-20 bg-blue-600 rounded-full'>
             Cart
             </button>
+            </Link>
            
         </div>
         <div className='flex justify-center items-center gap-20'>

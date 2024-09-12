@@ -137,7 +137,7 @@ export default function main() {
                   >
                     <div
                       key={items._id}
-                      className=" w-[500px] h-[250px]  mt-10 mb-20 rounded   "
+                      className=" w-[300px] h-[250px]  mt-10 mb-20 rounded   "
                     >
                       <div className="flex justify-center items-center gap-8 mt-4">
                       <Link to={`/details/${items._id}`}>
@@ -150,45 +150,20 @@ export default function main() {
                         </div>
 
                        </Link>
-                        <div>
-                          <div className="font-serif text-lg w-72 opacity-90 break-words">
-                            {items.ItemsN}
-                          </div>
-                          <div className=" opacity-90 font-medium mt-6">
-                            RS.{items.price}
-                          </div>
-                          <div className="">
-                            <div className="flex mt-10">
-                              <div
-                                className="w-[30px] border border-white bg-white rounded-md flex justify-center items-center  cursor-pointer "
-                                onClick={() => decrement(items._id)}
-                              >
-                                <FaMinus className="text-gray-800" />
-                              </div>
-                              <div className="text-[20px] w-[30px]  text-black flex justify-center items-center  ">
-                                {quantityMap.get(items._id) || 1}
-                              </div>
 
-                              <div
-                                className="w-[30px]  border border-white bg-white rounded-md   flex justify-center items-center cursor-pointer "
-                                onClick={() => increment(items._id)}
-                              >
-                                <FaPlus className="text-gray-800" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex justify-center items-center mt-8">
-                            <div>
-                              <button
-                                onClick={() => handleAddToCart(items._id)}
-                                className="w-24 h-8 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg"
-                              >
-                                Add
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                        
                       </div>
+                      <Link to={`/details/${items._id}`}>
+                      <div className="flex  mt-4 justify-center items-center">
+                        <div >
+                    
+                        <button className="rounded-full bg-red-600  w-52 text-white">
+                        select option
+                        </button>
+                        </div>
+                       
+                      </div>
+                      </Link>
                     </div>
                   </tr>
                 ))}

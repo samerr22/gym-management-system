@@ -178,15 +178,7 @@ export default function Cart() {
 
   return (
     <div>
-      <div className="flex justify-center items-center mt-2 mb-8">
-        <div>
-          <img
-            src="https://images.pexels.com/photos/236910/pexels-photo-236910.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-            className="h-[600px] w-[1400px] rounded-md shadow-sm"
-          />
-        </div>
-      </div>
+     
        <form onSubmit={handleSubmit}>
       <div className="flex justify-center items-center ">
         <div className=" mt-4">
@@ -286,34 +278,14 @@ export default function Cart() {
           <div className="w-[1200px] h-[300px] mt-10 rounded-xl bg-opacity-10 shadow-sm bg-slate-600">
             <div className="flex justify-center items-center gap-48 ">
               <div className="mt-14">
-                <div className="uppercase opacity-70 font-serif text-3xl">
-                  date
-                </div>
-                <div className="uppercase mt-8 opacity-70 font-serif text-3xl">
-                  promo code
-                </div>
+               
                 <div className="uppercase mt-8 opacity-70 font-serif text-3xl">
                   total
                 </div>
               </div>
 
               <div className="mt-14">
-                <div className="uppercase font-serif text-xl">
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    className="rounded-full w-[200px] h-8 bg-opacity-10"
-                  />
-                </div>
-                <div className="uppercase mt-8 font-serif text-xl">
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    className="rounded-full w-[200px] h-8 bg-opacity-10"
-                  />
-                </div>
+               
                 <div className=" mt-8 font-medium ">
                   <div
                     type="text"
@@ -332,15 +304,13 @@ export default function Cart() {
             </div>
             <div className="flex justify-center items-center mt-2">
               <div>
-                <button type="submit" disabled={!reportDownloaded} className={`w-52 rounded-full h-10 uppercase text-white ${reportDownloaded ? 'bg-blue-700 opacity-80 hover:opacity-90' : 'bg-blue-500 opacity-50 cursor-not-allowed'}`}>
+                <button className='bg-blue-700 w-44 h-8 rounded-full text-white opacity-80 hover:opacity-90' >
                   Checkout
                 </button>
               </div>
             </div>
             <div className="flex justify-center items-center">
-              <div className="text-sm uppercase text-red-600">
-                first Please downlaod the Bill
-              </div>
+            
             </div>
           </div>
         </div>
@@ -349,17 +319,9 @@ export default function Cart() {
       <div className="flex justify-center items-center mb-8 g mt-16">
         <div>
         
-        <Link to={`/bill`}>
-          <button className="w-32 h-8  text-opacity-80 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg">
-            {" "}
-            view order
-          </button>
-          </Link>
+       
 
-          <button  onClick={generatePDF} className="w-52 h-8 ml-4  whitespace-nowrap text-opacity-80 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg">
-            {" "}
-            Download bill
-          </button>
+         
         </div>
       </div>
       
