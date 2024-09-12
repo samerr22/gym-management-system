@@ -1,4 +1,4 @@
-
+import { Spinner } from "flowbite-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +7,9 @@ import {
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSilce";
-import girl from "../img/sliit.jpg";
 
-export default function InventrySignIn() {
+
+export default function SignIn() {
   const [formData, setFormData] = useState({});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ export default function InventrySignIn() {
     try {
       dispatch(signInStart());
 
-      const res = await fetch("http://localhost:3000/api/auth/ssignin", {
+      const res = await fetch("/api/auth/ssignin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -40,23 +40,23 @@ export default function InventrySignIn() {
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate("/adminpage");
+        navigate("/Sadminpage");
       }
     } catch (error) {
-      dispatch(signInFailure("error"));
+      dispatch(signInFailure(data.message));
     }
   };
 
   return (
-    <div className="  min-h-screen ">
+    <div className="min-h-screen relative flex items-center justify-center">
        <img
-         src={girl}
+         src=""
         alt=""
-        className="w-full h-screen  opacity-95 object-cover "
+        className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="absolute transform -translate-x-0 translate-y-0 top-1  flex justify-center items-center">
+      <div className="relative bg-white bg-opacity-10 shadow-sm shadow-black w-[600px] max-w-[600px] p-6 md:p-8 rounded-3xl border border-opacity-50 flex flex-col items-center">
         <div className="">
-          <div className=" mt-32 lg:ml-[470px] md:ml-[240px] ml-[4px] ">
+      
             <div className=" flex justify-center items-center">
               <div>
                 <h1 className="text-4xl font-serif opacity-70 text-gray-800">
@@ -99,7 +99,7 @@ export default function InventrySignIn() {
                     >
                       {loading ? (
                         <>
-                        
+                          <Spinner size="sm" />
                           <sapn className="pl-3">Loading...</sapn>
                         </>
                       ) : (
@@ -122,7 +122,7 @@ export default function InventrySignIn() {
                 </div>
               </div>
             </div>
-          </div>
+       
         </div>
       </div>
     </div>
