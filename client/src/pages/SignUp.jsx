@@ -95,12 +95,12 @@ export default function SignUp() {
           <div className=" flex justify-center items-center">
             <div>
               <h1 className="text-4xl font-serif opacity-70 text-gray-800">
-                Supplier Register
+                 Register
               </h1>
             </div>
           </div>
-          <div className="max-h-[550px] mt-2 overflow-y-auto scrollbar-none ">
-            <div className="bg-white bg-opacity-60 shadow-sm shadow-black w-[480px]  md:w-[550px] lg:w-[550px] border h-[720px] mt-8 max-w-3xl mx-auto rounded-3xl border-opacity-50 ">
+          <div className=" ">
+            <div className="bg-white bg-opacity-60 shadow-sm shadow-black w-[480px]  md:w-[550px] lg:w-[550px] border h-[400px] mt-8 max-w-3xl mx-auto rounded-3xl border-opacity-50 ">
               <div className="flex justify-center items-center   ">
                 <div className="mt-4">
                   <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -116,72 +116,7 @@ export default function SignUp() {
                         onChange={handlchange}
                       />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-700 ml-1">
-                        Register Number
-                      </h3>
-                      <input
-                        className=" bg-slate-100 bg-opacity-40 border-black shadow-sm border-opacity-50  p-3 rounded-lg w-[460px] h-11"
-                        type="text"
-                        placeholder="Username"
-                        id="Rnumber"
-                        onChange={handleContactChange}
-                      />
-                      {validation && (
-                        <p className="mt-0 text-red-600 h-0     rounded-lg text-center ">
-                          {validation}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-700 ml-1">
-                        Busness Address
-                      </h3>
-                      <input
-                        className=" bg-slate-100 bg-opacity-40 border-black shadow-sm border-opacity-50  p-3 rounded-lg w-[460px] h-11"
-                        type="text"
-                        placeholder="Username"
-                        id="Baddress"
-                        onChange={handlchange}
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-700 ml-1">
-                        Contact Number
-                      </h3>
-                      <input
-                        className=" bg-slate-100 bg-opacity-40 border-black shadow-sm border-opacity-50  p-3 rounded-lg w-[460px] h-11"
-                        type="text"
-                        placeholder="Username"
-                        id="CNumber"
-                        maxLength={10}
-                        onChange={handlenumberChange}
-                      />
-                      {Cvalidation && (
-                        <p className="mt-0 text-red-600 h-0     rounded-lg text-center ">
-                          {Cvalidation}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-700 ml-1">
-                        Categary
-                      </h3>
-                      <select
-                        className="bg-slate-100 p-3 rounded-lg w-[460px] h-11 "
-                        id="categary"
-                        onChange={handlchange}
-                      >
-                        <option value="">Select </option>
-                        <option value="Rooms">Furriture</option>
-                        <option value="Maintenance">food & beverage</option>
-                        <option value="Food">cleaning & manintaining</option>
-                        <option value="Inventory">
-                          Technology & Electronic
-                        </option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
+               
                     <div>
                       <h3 className="font-semibold text-gray-700 ml-1">
                         Email
@@ -207,7 +142,7 @@ export default function SignUp() {
                       />
                     </div>
                     <button
-                      className=" bg-[#FF9911] shadow-lg mt-6 bg-opacity-80 border-white border border-opacity-50 text-white p-3 rounded-lg w-[460px] h-[45px] hover:opacity-90"
+                      className=" bg-[#254af0]  shadow-lg mt-6 bg-opacity-80 border-white border border-opacity-50 text-white p-3 rounded-lg w-[460px] h-[45px] hover:opacity-90"
                       type="submit"
                       disabled={loading}
                     >

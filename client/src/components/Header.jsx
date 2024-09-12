@@ -24,7 +24,7 @@ export default function Header() {
   };
 
   return (
-    <div className="bg-[#ffffff]  border border-black shadow-sm shadow-black">
+    <div className="bg-blue-800  border border-black shadow-sm shadow-black">
       <div className="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto p-4">
         
         <ul className="flex flex-col md:flex-row gap-2 md:gap-4 mt-2 md:mt-0">
@@ -50,9 +50,21 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <Link to="/sign-in" className="text-white hover:text-gray-200">
-              <li>Sign In</li>
+            <>
+            <div className="flex gap-4 ml-[900px]">
+              <div>
+              <Link to="/" className="text-white uppercase hover:text-gray-200">
+              <li>Login</li>
             </Link>
+              </div>
+              <div>
+              <Link to="/Inventrylogin" className="text-white uppercase hover:text-gray-200">
+              <li>Inventry</li>
+            </Link>
+              </div>
+            </div>
+            
+            </>
           )}
         </ul>
       </div>

@@ -8,6 +8,8 @@ import Home from "./pages/main";
 import Bill from "./pages/Bill";
 import Cart from "./pages/Cart";
 import Inventrylogin from "./pages/Inventrylogin";
+import StoreM from "./pages/StoreM";
+
 
 
 
@@ -25,6 +27,8 @@ export default function App() {
           <Route path="/bill" element={<Bill />} /> 
           <Route path="/cart" element={<Cart />} /> 
           <Route path="/home" element={<Home />} />
+          <Route path="/store" element={<StoreM />} />
+         
          
         </Route>
       </Routes>

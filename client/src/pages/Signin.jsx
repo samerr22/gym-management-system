@@ -39,7 +39,7 @@ export default function SignIn() {
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate("/profile");
+        navigate("/home");
       }
     } catch (error) {
       dispatch(signInFailure(data.message));
@@ -84,7 +84,7 @@ export default function SignIn() {
           />
         </div>
         <button
-          className="bg-[#FF9911] shadow-lg mt-6 bg-opacity-80 border-white border border-opacity-50 text-white p-3 rounded-lg w-full h-11 hover:opacity-90"
+          className="bg-[#254af0] shadow-lg mt-6 bg-opacity-80 border-white border border-opacity-50 text-white p-3 rounded-lg w-full h-11 hover:opacity-90"
           type="submit"
           disabled={loading}
         >

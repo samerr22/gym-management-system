@@ -26,6 +26,6 @@ const msotreSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Msotre = mongoose.model('Msotre', msotreSchema);
+const Mstore = mongoose.model('Mstore', msotreSchema);
 
-export default Msotre;
+export default Mstore;

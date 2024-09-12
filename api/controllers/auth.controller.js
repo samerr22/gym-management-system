@@ -1,3 +1,5 @@
+
+import Mstore from "../models/Mstore.model.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
@@ -86,7 +88,7 @@ export const ssignup = async (req, res, next) => {
     return res.status(400).json({ message: "All fields are required" });
   }
 
-  const newUser = new Admin({
+  const newUser = new Mstore({
     username,
     email,
     password,
@@ -108,7 +110,7 @@ export const ssigngin = async (req, res, next) => {
   }
 
   try {
-    const validUser = await Admin.findOne({ email });
+    const validUser = await Mstore.findOne({ email });
     if (!validUser) {
       return res.status(404).json({ message: "user Not found" });
     }
