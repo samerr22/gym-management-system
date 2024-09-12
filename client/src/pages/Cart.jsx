@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const [Info, setInfo] = useState([]);
-  const [quantity, setquantity] = useState(1);
   const { currentUser } = useSelector((state) => state.user);
   const CurrentuserId = currentUser ? currentUser._id : null;
   const [totalPrice, setTotalPrice] = useState(0);
