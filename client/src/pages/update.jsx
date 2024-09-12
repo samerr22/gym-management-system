@@ -5,10 +5,10 @@ import {
     uploadBytesResumable,
   } from "firebase/storage";
   import { app } from "../firebase";
-  import { useState } from "react";
+  import { useEffect, useState } from "react";
   import { CircularProgressbar } from "react-circular-progressbar";
   import "react-circular-progressbar/dist/styles.css";
-  import { useNavigate } from "react-router-dom";
+  import { useNavigate, useParams } from "react-router-dom";
   
   export default function CreatePost() {
     const [file, setFile] = useState(null);
@@ -16,6 +16,32 @@ import {
     const [imageUploadError, setImageUploadError] = useState(null);
     const [formData, setFormData] = useState({});
     const [publishError, setPublishError] = useState(null);
+
+    const { Id } = useParams();
+
+
+    useEffect(() => {
+        try {
+          const fetchStudents = async () => {
+            const res = await fetch(`/api/items/IgetAll?itemId=${Id}`);
+            const data = await res.json();
+            console.log("data", data);
+    
+            if (!res.ok) {
+              console.log(data.message);
+            }
+            if (res.ok) {
+              const selected = data.items.find((item) => item._id === Id);
+              if (selected) {
+                setFormData(selected);
+              }
+            }
+          };
+          fetchStudents();
+        } catch (error) {
+          console.log(error.message);
+        }
+      }, [Id]);
   
     console.log(formData);
   
@@ -59,31 +85,31 @@ import {
     };
   
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const res = await fetch("/api/items/Icreate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          setPublishError(data.message);
-          return;
+        e.preventDefault();
+        try {
+          const res = await fetch(`/api/items/Update/${formData._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+          const data = await res.json();
+          console.log(data);
+          if (!res.ok) {
+            setPublishError(data.message);
+            return;
+          }
+    
+          if (res.ok) {
+            setPublishError(null);
+            alert("done")
+            navigate(``);
+          }
+        } catch (error) {
+          setPublishError("Something went wrong");
         }
-  
-        if (res.ok) {
-          setPublishError(null);
-          alert("successfull");
-          navigate("");
-        }
-      } catch (error) {
-        setPublishError("Something went wrong");
-      }
-    };
-  
+      };
    
   
     return (
@@ -144,6 +170,7 @@ import {
                 onChange={(e) =>
                   setFormData({ ...formData, ItemsN: e.target.value })
                 }
+                value={formData.ItemsN}
               />
             </div>
             <div className="flex justify-center items-center gap-56">
@@ -156,6 +183,7 @@ import {
                 onChange={(e) =>
                     setFormData({ ...formData, price: e.target.value })
                   }
+                  value={formData.price}
               />
   
               <select
@@ -163,6 +191,7 @@ import {
                 onChange={(e) =>
                   setFormData({ ...formData, quantity: e.target.value })
                 }
+                value={formData.quantity}
               >
                 <option value="">quantity</option>
                 <option value="1">1</option>
@@ -181,6 +210,7 @@ import {
                 onChange={(e) =>
                   setFormData({ ...formData, size: e.target.value })
                 }
+                value={formData.size}
               />
   
               <input
@@ -192,6 +222,7 @@ import {
                 onChange={(e) =>
                   setFormData({ ...formData, flavor: e.target.value })
                 }
+                value={formData.flavor}
               />
             </div>
   
@@ -206,6 +237,7 @@ import {
                 onChange={(e) =>
                   setFormData({ ...formData, descrip: e.target.value })
                 }
+                value={formData.descrip}
               />
             </div>
   
@@ -213,7 +245,7 @@ import {
               type="submit"
               className=" bg-blue-700 text-white p-3 rounded-lg w-[460px] h-11 hover:opacity-90 lg:w-full"
             >
-              Add
+              update
             </button>
   
             {publishError && (
