@@ -78,7 +78,7 @@ export const updateItem = async (req, res, next) => {
 
 
 
-//delete ticket
+//delete 
 export const deleteItem = async (req, res, next) => {
   try {
     await Items.findByIdAndDelete(req.params.ItemmId);

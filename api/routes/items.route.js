@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/Icreate',Itcreate );
 router.get('/IgetAll', getAllItems);
 router.put('/Update/:itemId', updateItem);
-router.get('/delete/:ItemmId', deleteItem);
+router.delete('/delete/:ItemmId', deleteItem);
 router.post('/Ccreate',Cartcrete );
 router.get('/CgetAll/:CurrentuserId', getCartItem);
 router.delete('/deletes/:itemsId',deleteItems);

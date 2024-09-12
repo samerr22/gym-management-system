@@ -8,22 +8,23 @@ export default function StoreM() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   
   const [Info, setInfo] = useState([]);
-  console.log("ind",Info);
+ 
   const [DId, setformId] = useState("");
   const [filter, setfilter] = useState([]);
   const [query, setQuery] = useState(" ");
+  console.log("ind",DId);
 
   console.log();
 
   useEffect(() => {
     const fetchinfo = async () => {
       try {
-        const res = await fetch(`/api/equiment/getAll`);
+        const res = await fetch(`/api/items/IgetAll`);
         const data = await res.json();
         console.log(data);
 
         if (res.ok) {
-          setInfo(data.equipment);
+          setInfo(data.items);
         }
       } catch (error) {
         console.log(error.message);
@@ -34,13 +35,13 @@ export default function StoreM() {
 
   const handleDeleteUser = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/equiment/deleteEuip/${DId}`, {
+      const res = await fetch(`/api/items/delete/${DId}`, {
         method: "DELETE",
       });
       const data = await res.json();
       if (res.ok) {
         setInfo((prev) => prev.filter((Employe) => Employe._id !== DId));
-        setShowSuccessModal(true);
+        alert("deleted")
       } else {
         console.log(data.message);
       }
@@ -58,8 +59,8 @@ export default function StoreM() {
       // If there's a query, filter the data
       const filteredData = Info.filter(
         (Employe) =>
-          Employe.name &&
-          Employe.name.toLowerCase().includes(query.toLowerCase())
+          Employe.ItemsN &&
+          Employe.ItemsN.toLowerCase().includes(query.toLowerCase())
       );
       setfilter(filteredData);
     }
@@ -173,19 +174,19 @@ export default function StoreM() {
                 <thead className="bg-none divide-x divide-black">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs bg-blue-700 bg-opacity-70 text-white font-medium text-opacity-80   uppercase">
-                      Name
+                      image
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium   bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
-                      Required Date
+                      Name
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
-                    Maintenance Task
+                    flavor
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium  bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
-                       Items Quantity
+                       quantity
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium  bg-blue-700 bg-opacity-70 text-white text-opacity-80   uppercase">
-                      Available fund
+                      price
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium  bg-blue-700 bg-opacity-70 text-white text-opacity-80    uppercase">
                       Edit
@@ -205,25 +206,25 @@ export default function StoreM() {
                           className=" dark:border-gray-700 dark:bg-gray-800"
                         >
                           <td className="px-6 py-4 break-words max-w-[300px]">
-                            {Employe.name}
+                            <img src={Employe.image} alt="" className="w-14 h-14" />
                           </td>
 
                           <td className="px-6 py-4 whitespace-nowrap">
-                            {Employe.Reqdata}
+                            {Employe.ItemsN}
                           </td>
 
                           <td className="px-6 py-4 break-words max-w-[300px] ">
-                            {Employe.Task}
+                            {Employe.flavor}
                           </td>
 
                           <td className="px-6 py-4  break-words max-w-[300px]">
-                          {Employe.Quantity}
+                          {Employe.quantity}
                           </td>
                           
                           <td className=" px-8 py-4  whitespace-nowrap">
                            
                               
-                              {Employe.fund}
+                              {Employe.price}
                             
                            
                           </td>
