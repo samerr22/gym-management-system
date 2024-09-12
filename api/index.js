@@ -8,7 +8,7 @@ import Items from './routes/items.route.js';
 
 import cookieParser from 'cookie-parser';
 
-dotenv.config();
+dotenv.config()
 
 mongoose.connect(process.env.MONGO).then(() => {
     console.log('it is connected');
