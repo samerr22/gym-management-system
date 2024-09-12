@@ -5,7 +5,7 @@ import "jspdf-autotable";
 
 export default function StoreM() {
 
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
   
   const [Info, setInfo] = useState([]);
  
@@ -70,58 +70,54 @@ export default function StoreM() {
     const doc = new jsPDF();
 
     // Add title
-    doc.text("Equipment Report", 10, 10);
+    doc.text("Product Report", 10, 10);
 
     // Define the columns for the table
     const columns = [
-      { title: "Name", dataKey: "name" },
-      { title: "Required Data", dataKey: "Reqdata" },
-      { title: "Mantenace Task", dataKey: "Task" },
-      { title: "Items Quantity", dataKey: "Quantity" },
-      { title: "Available fund", dataKey: "fund" }
+        { title: "Name", dataKey: "name" },
+        { title: "Flavor", dataKey: "flavor" },
+        { title: "Quantity", dataKey: "quantity" },
+        { title: "Price", dataKey: "price" }
     ];
 
     // Define the data for the table
     const data = Info.map((emp) => ({
-      name: emp.name,
-      Reqdata: emp.Reqdata,
-      Task: emp.Task,
-      Quantity: emp.Quantity,
-      fund: emp.fund
+        name: emp.ItemsN,
+        flavor: emp.flavor,
+        quantity: emp.quantity,
+        price: emp.price
     }));
 
     // Add table to the PDF
     doc.autoTable({
-      columns: columns,
-      body: data,
-      styles: {
-        cellPadding: 1,
-        fontSize: 10,
-        lineHeight: 1.2,
-        overflow: "linebreak", 
-      },
-      headStyles: {
-        fillColor: [0, 128, 0], 
-        textColor: [255, 255, 255], 
-        fontStyle: 'bold' 
-      },
-      columnStyles: {
-        0: { halign: 'left' },
-        1: { halign: 'left' },
-        2: { halign: 'left' },
-        3: { halign: 'left' },
-        4: { halign: 'left' },
-      }
+        columns: columns,
+        body: data,
+        styles: {
+            cellPadding: 1,
+            fontSize: 10,
+            lineHeight: 1.2,
+            overflow: "linebreak"
+        },
+        headStyles: {
+            fillColor: [0, 128, 0],
+            textColor: [255, 255, 255],
+            fontStyle: 'bold'
+        },
+        columnStyles: {
+            0: { halign: 'left' },
+            1: { halign: 'left' },
+            2: { halign: 'left' },
+            3: { halign: 'left' }
+        }
     });
 
     // Save the PDF
-    doc.save("equipmentReport.pdf");
+    doc.save("productReport.pdf");
 };
 
 
-  const closeModal = () => {
-    setShowSuccessModal(false);
-  };
+
+  
 
 
   return (
@@ -269,77 +265,10 @@ export default function StoreM() {
 
       </div>
 
-      {showSuccessModal && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div
-              className="fixed inset-0 transition-opacity"
-              aria-hidden="true"
-            >
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <div
-              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-headline"
-            >
-              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <svg
-                      className="h-6 w-6 text-blue-600"
-                      
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3
-                      className="text-lg leading-6 font-medium text-gray-900"
-                      id="modal-headline"
-                    >
-                      Success!
-                    </h3>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                      Equipment Requst deleted.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button
-                  onClick={closeModal}
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      
 
 
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-14 mt-5"></div>
+
     </div>
   );
 }
