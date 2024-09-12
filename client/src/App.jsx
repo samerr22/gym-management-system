@@ -7,6 +7,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/main";
 import Bill from "./pages/Bill";
 import Cart from "./pages/Cart";
+import Inventrylogin from "./pages/Inventrylogin";
 
 
 
@@ -17,6 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/Inventrylogin" element={<Inventrylogin />} />
 
         <Route element={<PrivateRoute />}>
          
