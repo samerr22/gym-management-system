@@ -7,6 +7,18 @@ const ItemsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  size: {
+    type: String,
+    required: true
+  },
+  flavor: {
+    type: String,
+    required: true
+  },
+  descrip: {
+    type: String,
+    required: true
+  },
   price: {
     type: Number, 
     required: true

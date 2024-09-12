@@ -4,13 +4,16 @@ import Items from "../models/items.model.js";
 
 //add new items
 export const Itcreate = async (req, res, next) => {
-  const { ItemsN, price, quantity, image} = req.body;
+  const { ItemsN, price, quantity, image,size,flavor,descrip} = req.body;
 
   const newItems = new Items({
     ItemsN,
     price,
     quantity,
     image,
+    size,
+    flavor,
+    descrip
   });
   try {
     const savedItems = await newItems.save();
@@ -37,6 +40,63 @@ export const getAllItems = async (req, res, next) => {
     next(error);
   }
 };
+
+
+
+//update 
+export const updateItem = async (req, res, next) => {
+ 
+  try {
+    const updateequipment = await Items.findByIdAndUpdate(
+      req.params.itemId,
+      {
+        $set: {
+         
+        
+          ItemsN: req.body.ItemsN,
+          size: req.body.size,
+          flavor: req.body.flavor,
+          descrip: req.body.descrip,
+          price: req.body.price,
+          quantity: req.body.quantity,
+          image: req.body.image,
+          
+        
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updateequipment);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
+
+
+
+//delete ticket
+export const deleteItem = async (req, res, next) => {
+  try {
+    await Items.findByIdAndDelete(req.params.ItemmId);
+    res.status(200).json("The item has been deleted");
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+
+
+
+
+
 
 //add cart
 export const Cartcrete = async (req, res, next) => {
