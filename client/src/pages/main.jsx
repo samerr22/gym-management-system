@@ -177,7 +177,7 @@ export default function main() {
                       <div className="flex  mt-4 justify-center items-center">
                         <div >
                     
-                        <button className="rounded-full bg-red-600  w-52 text-white">
+                        <button className="rounded-full font-serif text-sm uppercase text-opacity-80 bg-red-600  w-52 text-white">
                         select option
                         </button>
                         </div>

@@ -100,10 +100,27 @@ export default function details() {
 
 
   return (
-    <div className='mt-20 mb-36'>
-        <div className=' ml-[1100px]'>
+    <div className="min-h-screen relative flex items-center justify-center">
+
+<img
+        src="https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+<div className="relative bg-white mt-14 mb-28 bg-opacity-60 shadow-sm shadow-black w-[900px] max-w-[900px] p-6 md:p-8 rounded-3xl border border-opacity-50 flex flex-col items-center">
+<div className="flex justify-center items-center">
+              <Link to={`/home`}>
+                <button className="text-md hover:text-blue-400   font-serif underline text-gray-800">
+                  Back
+                </button>
+              </Link>
+            </div>
+
+
+        <div className=' absolute ml-[1200px] mt-[-50px] '>
         <Link to={`/cart`}>
-            <button className='w-20 bg-blue-600 rounded-full'>
+            <button className='w-32 uppercase font-serif
+             text-white hover:text-black  bg-red-600 rounded-full'>
             Cart
             </button>
             </Link>
@@ -113,7 +130,7 @@ export default function details() {
             <div>
 
         
-           <img src={formData.image} alt="" className='w-72 h-96' />
+           <img src={formData.image} alt="" className='w-72 rounded-3xl shadow-sm shadow-black h-96' />
 
 
 
@@ -126,38 +143,48 @@ export default function details() {
                     <div className='font-serif text-xl'>
                         <h1>{formData.ItemsN}</h1>
                     </div>
-                    <div>
+                    <div className='font-mono text-lg mt-2 text-red-600'>
                         <p>Rs{formData.price}</p>
                     </div>
-                    <div className='mt-4 w-96 break-words'>
+                    <div className='mt-4 w-96 font-serif text-slate-700 break-words'>
                         <h1>{formData.descrip}</h1>
                     </div>
 
                     <div className='mt-4'>
-                        <h1>{formData.size}</h1>
+                     <button className='w-28 rounded-full bg-white bg-opacity-60 cursor-default'>
+                     <h1>{formData.size}</h1>
+
+                     </button>
+
+
+                       
                     </div>
                     <div className='mt-4'>
-                        <h1>{formData.flavor}</h1>
+                      <div className='w-28 rounded-full bg-white bg-opacity-60 cursor-default'>
+                      <h1 className='ml-5 font-serif'>{formData.flavor}</h1>
+                      </div>
+              
+                      
                     </div>
 
                     <div className='mt-4'>
                     <div className="">
                             <div className="flex mt-10">
                               <div
-                                className="w-[30px] border border-white bg-white rounded-md flex justify-center items-center  cursor-pointer "
+                                className="w-[30px] border  bg-red-600 rounded-md flex justify-center items-center  cursor-pointer "
                                 onClick={() => decrement(formData._id)}
                               >
-                                <FaMinus className="text-gray-800" />
+                                <FaMinus className="text-slate-100 hover:text-black" />
                               </div>
                               <div className="text-[20px] w-[30px]  text-black flex justify-center items-center  ">
                                 {quantityMap.get(formData._id) || formData.quantity}
                               </div>
 
                               <div
-                                className="w-[30px]  border border-white bg-white rounded-md   flex justify-center items-center cursor-pointer "
+                                className="w-[30px]  border  bg-red-600 rounded-md   flex justify-center items-center cursor-pointer "
                                 onClick={() => increment(formData._id)}
                               >
-                                <FaPlus className="text-gray-800" />
+                                <FaPlus className="text-slate-100 hover:text-black" />
                               </div>
                             </div>
                           </div>
@@ -167,9 +194,9 @@ export default function details() {
                             <div>
                               <button
                                 onClick={() => handleAddToCart(formData._id)}
-                                className="w-24 h-8 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg"
+                                className="w-56 h-8 rounded-full text-white bg-opacity-90 uppercase bg-red-600 hover:opacity-80 shadow-lg"
                               >
-                                Add
+                                Add to cart
                               </button>
                             </div>
                           </div>
@@ -181,6 +208,7 @@ export default function details() {
 
                 </div>
             </div>
+        </div>
         </div>
         
 
