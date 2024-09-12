@@ -109,13 +109,7 @@ export default function main() {
   return (
     <div>
       <div className="flex justify-center items-center mt-2 mb-8">
-        <div>
-          <img
-            src="https://images.pexels.com/photos/4053267/pexels-photo-4053267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-            className="h-[600px] w-[1400px] rounded-md shadow-sm"
-          />
-        </div>
+       
       </div>
       <div className="flex justify-center items-center mt">
         <div>
@@ -146,6 +140,7 @@ export default function main() {
                       className=" w-[500px] h-[250px]  mt-10 mb-20 rounded   "
                     >
                       <div className="flex justify-center items-center gap-8 mt-4">
+                      <Link to={`/details/${items._id}`}>
                         <div>
                           <img
                             src={items.image}
@@ -154,6 +149,7 @@ export default function main() {
                           />
                         </div>
 
+                       </Link>
                         <div>
                           <div className="font-serif text-lg w-72 opacity-90 break-words">
                             {items.ItemsN}

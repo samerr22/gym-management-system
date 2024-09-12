@@ -11,6 +11,7 @@ import Inventrylogin from "./pages/Inventrylogin";
 import StoreM from "./pages/StoreM";
 import Addnewproduct from "./pages/Addnewproduct";
 import Update from "./pages/update";
+import Details from "./pages/details";
 
 
 
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/store" element={<StoreM />} />
           <Route path="/add" element={<Addnewproduct />} />
           <Route path="/update/:Id" element={<Update />} />
+          <Route path="/details/:itemId" element={<Details />} />
          
          
         </Route>

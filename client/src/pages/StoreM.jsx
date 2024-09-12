@@ -220,7 +220,7 @@ export default function StoreM() {
                           <td className=" px-8 py-4  whitespace-nowrap">
                            
                               
-                              {Employe.price}
+                              RS.{Employe.price}
                             
                            
                           </td>

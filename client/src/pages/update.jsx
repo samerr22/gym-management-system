@@ -232,7 +232,7 @@ import {
                 placeholder="Description"
                 required
                 id="descrip"
-                maxLength={30}
+              
                 className="flex-1 bg-slate-100 shadow-sm shadow-slate-500 p-3 rounded-lg w-[460px] h-15"
                 onChange={(e) =>
                   setFormData({ ...formData, descrip: e.target.value })

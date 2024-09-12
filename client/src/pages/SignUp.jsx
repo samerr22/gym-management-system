@@ -171,7 +171,7 @@ export default function SignUp() {
                   </div>
 
                   {errorMessage && (
-                    <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
+                    <p className="mt-5 absolute text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
                       {errorMessage}
                     </p>
                   )}
