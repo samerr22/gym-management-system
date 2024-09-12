@@ -85,7 +85,7 @@ export default function SignUp() {
   return (
     <div className=" min-h-screen relative flex items-center justify-center ">
       <img
-        src=""
+        src="https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
       />

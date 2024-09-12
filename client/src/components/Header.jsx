@@ -24,7 +24,7 @@ export default function Header() {
   };
 
   return (
-    <div className="bg-blue-800  border border-black shadow-sm shadow-black">
+    <div className="bg-[#2b62fa]  border border-black shadow-sm shadow-black">
       <div className="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto p-4">
         
         <ul className="flex flex-col md:flex-row gap-2 md:gap-4 mt-2 md:mt-0">

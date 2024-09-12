@@ -53,6 +53,7 @@ export default function Cart() {
       if (res.ok) {
         setInfo((prev) => prev.filter((items) => items._id !== FormId));
         alert("succesfull");
+        window.location.reload()
       } else {
         console.log(data.message);
       }
@@ -64,145 +65,59 @@ export default function Cart() {
   
 
 
-  //save report in th data base
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ 
 
-    try {
-      
-      
-
-      const formDataWithItems = {
-       
-        CurrentuserId: currentUser._id,
-        items: Info.map((item) => ({
-          ItemsN: item.ItemsN,
-          price: item.price,
-          quantity: item.quantity,
-        })),
-        length: Info.length,
-        totalPrice: totalPrice,
-      };
-
-      console.log("dataaa", formDataWithItems);
-
-      const res = await fetch("/api/items/Ocreate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formDataWithItems),
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        return  console.log(data.message);
-      }
-
-      if (res.ok) {
-        console.log(formDataWithItems);
-         alert("succesfull")
-        handleDeleteall();
-        navigate("/bill")
-        
-       
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-
-   //if submite is success clear the cart details
-   const handleDeleteall = async () => {
-    try {
-      const res = await fetch(`/api/items/deletesall/${CurrentuserId}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        console.log("fail");
-      } else {
-        console.log("success");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  const generatePDF = () => {
-    const doc = new jsPDF();
   
-    // Add title
-    doc.text("bill Report", 10, 10);
-  
-    // Define the columns for the table
-    const columns = [
-      { title: "Item Name", dataKey: "name" },
-      { title: "Quantity", dataKey: "quantity" },
-      { title: "Price", dataKey: "price" }
-    ];
-  
-    // Define the data for the table
-    const data = Info.map((item) => ({
-      name: item.ItemsN,
-      quantity: item.quantity,
-      price: item.price
-    }));
-  
-    // Add table to the PDF
-    doc.autoTable({
-      columns: columns,
-      body: data,
-      startY: 20, // Start the table below the title
-      styles: {
-        cellPadding: 1,
-        fontSize: 10,
-        lineHeight: 1.2,
-        overflow: "linebreak", // Ensure text wraps to the next line
-      },
-     
-     
-    });
-  
-    // Add total price to the PDF
-    const finalY = doc.lastAutoTable.finalY; // Get the y position of the last table
-    doc.text(`Total Price: RS.${totalPrice}`, 10, finalY + 10);
-  
-    // Save the PDF
-    doc.save("supplierReport.pdf");
-    setReportDownloaded(true);
-  };
+
+
+ 
   
 
   
 
 
   return (
-    <div>
+    <div className="min-h-screen relative flex items-center justify-center">
      
-       <form onSubmit={handleSubmit}>
+     <img
+        src="https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      
+      
+     <div className="relative bg-white mt-14 mb-28 bg-opacity-10 shadow-sm shadow-black w-[1400px] max-w-[1400px] p-6 md:p-8 rounded-3xl border border-opacity-50 flex flex-col items-center">
+     <div className="flex justify-center items-center">
+              <Link to={`/home`}>
+                <button className="text-md hover:text-blue-400   font-serif underline text-gray-800">
+                  Back
+                </button>
+              </Link>
+            </div> 
+       <form >
       <div className="flex justify-center items-center ">
         <div className=" mt-4">
           <div className=" flex justify-center items-center">
-            <div className="w-[1200px] h-[500px] bg-slate-600 rounded-xl bg-opacity-10">
+            <div className="w-[1200px] h-[300px]  rounded-xl bg-opacity-10">
               <div className="flex justify-center items-center  ">
-                <div className="max-h-96 scrollbar-none  overflow-y-auto mt-4">
+                <div className="max-h-72 scrollbar-none  overflow-y-auto mt-4">
                   <table className="w-[1000px] border border-white border-opacity-50 divide-y divide-black shadow-md">
                     <thead className="bg-none divide-x  divide-black">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs bg-gray-800 bg-opacity-90 text-white font-medium text-opacity-80   uppercase">
+                        <th className="px-6 py-3 text-left text-xs bg-slate-300 bg-opacity-90 text-black font-medium text-opacity-80   uppercase">
                           Image
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium   bg-gray-800 bg-opacity-90 text-white text-opacity-80   uppercase">
+                        <th className="px-6 py-3 text-left text-xs font-medium   bg-slate-300  bg-opacity-90 text-black text-opacity-80   uppercase">
                           Item Name
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium  bg-gray-800 bg-opacity-90 text-white text-opacity-80   uppercase">
+                        <th className="px-6 py-3 text-left text-xs font-medium  bg-slate-300  bg-opacity-90 text-black text-opacity-80   uppercase">
                           quantity
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium  bg-gray-800 bg-opacity-90 text-white text-opacity-80   uppercase">
+                        <th className="px-6 py-3 text-left text-xs font-medium  bg-slate-300  bg-opacity-90 text-black text-opacity-80   uppercase">
                           one item price
                         </th>
 
-                        <th className="px-6 py-3 text-left text-xs font-medium bg-gray-800 bg-opacity-90 text-white text-opacity-80   uppercase">
+                        <th className="px-6 py-3 text-left text-xs font-medium bg-slate-300  bg-opacity-90 text-black text-opacity-80   uppercase">
                           Delete
                         </th>
                       </tr>
@@ -224,16 +139,16 @@ export default function Cart() {
                             />
                           </td>
 
-                          <td className="px-6 py-4 whitespace-nowrap">
+                          <td className="px-6 py-4 font-serif whitespace-nowrap">
                             {items.ItemsN}
                           </td>
 
-                          <td className="px-6 py-4 break-words max-w-[300px] ">
+                          <td className="px-6 py-4 font-mono break-words max-w-[300px] ">
                             {items.quantity}
                           </td>
 
-                          <td className="px-6 py-4  break-words max-w-[300px]">
-                            {items.price}
+                          <td className="px-6 py-4 font-mono  break-words max-w-[300px]">
+                            RS.{items.price}
                           </td>
 
                           <td className="px-2 py-4 whitespace-nowrap">
@@ -275,7 +190,7 @@ export default function Cart() {
 
       <div className="flex justify-center items-center">
         <div>
-          <div className="w-[1200px] h-[300px] mt-10 rounded-xl bg-opacity-10 shadow-sm bg-slate-600">
+          <div className="w-[1200px] h-[200px] mt-10 rounded-xl bg-opacity-10 shadow-sm bg-slate-600">
             <div className="flex justify-center items-center gap-48 ">
               <div className="mt-14">
                
@@ -304,7 +219,7 @@ export default function Cart() {
             </div>
             <div className="flex justify-center items-center mt-2">
               <div>
-                <button className='bg-blue-700 w-44 h-8 rounded-full text-white opacity-80 hover:opacity-90' >
+                <button className='bg-red-700 uppercase font-serif text-sm w-44 h-8 rounded-full text-white opacity-80 hover:opacity-90' >
                   Checkout
                 </button>
               </div>
@@ -316,14 +231,8 @@ export default function Cart() {
         </div>
       </div>
       </form>
-      <div className="flex justify-center items-center mb-8 g mt-16">
-        <div>
-        
-       
-
-         
-        </div>
       </div>
+     
       
     </div>
   );
