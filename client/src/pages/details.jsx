@@ -160,8 +160,8 @@ export default function details() {
                        
                     </div>
                     <div className='mt-4'>
-                      <div className='w-36 rounded-full bg-white bg-opacity-60 cursor-default'>
-                      <h1 className=' ml-3 self-center font-serif'>{formData.flavor}</h1>
+                      <div className='w-28 rounded-full bg-white bg-opacity-60 cursor-default'>
+                      <h1 className=' ml-4 self-center font-serif'>{formData.flavor}</h1>
                       </div>
               
                       
